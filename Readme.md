@@ -37,6 +37,10 @@ http://localhost:8000
 http://localhost:8000/swagger
 ```
 
+Login with jwt token
+![Alt text](./swagger.png "swagger auth")
+
+
 ## Project Run Unit Test
 
 ### Run Test

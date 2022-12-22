@@ -22,7 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-bqy!m^d$)c+nxbvt!gn@tk)ta1)g^56=#x+14u+@034qmntr1_"
+SECRET_KEY = (
+    "django-insecure-bqy!m^d$)c+nxbvt!gn@tk)ta1)g^56=#x+14u+@034qmntr1_"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,11 +88,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_DB"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "PORT": os.environ.get("POSTGRES_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -139,7 +144,14 @@ REST_FRAMEWORK = {
     ],
 }
 SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {"Bearer": {"name": "Authorization", "type": "apiKey", "scheme": "Bearer", "in": "header"}}
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "name": "Authorization",
+            "type": "apiKey",
+            "scheme": "Bearer",
+            "in": "header",
+        }
+    }
 }
 
 SIMPLE_JWT = {

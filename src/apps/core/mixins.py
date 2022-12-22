@@ -4,7 +4,11 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class LoginRequiredMixin:
-    authentication_classes = [SessionAuthentication, BasicAuthentication, JWTAuthentication]
+    authentication_classes = [
+        SessionAuthentication,
+        BasicAuthentication,
+        JWTAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
 
@@ -20,8 +24,12 @@ class ActionSerializersMixin:
             f"'{self.__class__.__name__}' should include a `serializer_classes` attribute, "
             f"providing a SerializerClass for each action"
         )
-        assert self.action in self.serializer_classes or "default" in self.serializer_classes, (
-            f"'{self.__class__.__name__}' should provide a serializer class for " f"the action '{self.action}'"
+        assert (
+            self.action in self.serializer_classes
+            or "default" in self.serializer_classes
+        ), (
+            f"'{self.__class__.__name__}' should provide a serializer class for "
+            f"the action '{self.action}'"
         )
 
         if self.serializer_classes.get(self.action):

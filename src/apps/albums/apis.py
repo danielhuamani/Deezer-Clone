@@ -6,7 +6,12 @@ from apps.core.mixins import LoginRequiredMixin, ActionSerializersMixin
 
 
 class AlbumViewSet(LoginRequiredMixin, ActionSerializersMixin, ModelViewSet):
-    queryset = Album.objects.all().select_related("artist").prefetch_related("songs").order_by("-title")
+    queryset = (
+        Album.objects.all()
+        .select_related("artist")
+        .prefetch_related("songs")
+        .order_by("title")
+    )
     serializer_classes = {
         "default": AlbumSerializer,
         "create": AlbumCreateOrUpdateSerializer,

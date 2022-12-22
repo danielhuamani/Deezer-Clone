@@ -8,8 +8,12 @@ from apps.core.mixins import LoginRequiredMixin, ActionSerializersMixin
 
 
 class SongViewSet(LoginRequiredMixin, ActionSerializersMixin, ModelViewSet):
-    queryset = Song.objects.all().select_related("artist", "album").order_by("-name")
-    serializer_classes = {"default": SongCreateOrUpdateSerializer, "list": SongSerializer, "retrieve": SongSerializer}
+    queryset = Song.objects.all().order_by("name").select_related("artist", "album")
+    serializer_classes = {
+        "default": SongCreateOrUpdateSerializer,
+        "list": SongSerializer,
+        "retrieve": SongSerializer,
+    }
 
 
 class SongSearchAPI(LoginRequiredMixin, ListAPIView):

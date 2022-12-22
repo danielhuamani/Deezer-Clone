@@ -4,7 +4,9 @@ from tests.factories.song import SongFactory
 
 @pytest.fixture
 def draft_punk_song_1(draft_punk, draft_punk_album_1):
-    return SongFactory(name="One More Time", artist=draft_punk, album=draft_punk_album_1)
+    return SongFactory(
+        name="One More Time", artist=draft_punk, album=draft_punk_album_1
+    )
 
 
 @pytest.fixture

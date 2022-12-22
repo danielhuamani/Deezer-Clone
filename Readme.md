@@ -1,9 +1,10 @@
 # Silabuz Challenge
 
+this project is a basic clone of [Deezer API](https://developers.deezer.com/api)
 
 ## Before Project Run
 
-copy .env.template paste in docker/ with name it .env with their variables
+copy .env.template paste in docker/ and rename it with .env with their variables
 ## Project Run
 
 ### Build 

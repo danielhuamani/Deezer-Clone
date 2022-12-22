@@ -10,9 +10,9 @@ from apps.core.mixins import LoginRequiredMixin, ActionSerializersMixin
 class ArtistViewSet(LoginRequiredMixin, ActionSerializersMixin, ModelViewSet):
     queryset = (
         Artist.objects.all()
-        .order_by("name")
         .annotate(num_songs=Count("songs", distinct=True))
         .annotate(num_albums=Count("albums", distinct=True))
+        .order_by("name")
     )
 
     serializer_classes = {

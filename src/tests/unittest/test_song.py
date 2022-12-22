@@ -70,7 +70,7 @@ class TestSongSearchAPI:
         url = reverse("songs:song_search")
         response = api_client.get(
             url,
-            {"search": "High"},
+            {"search": ""},
             format="json",
         )
         response_json = response.json()

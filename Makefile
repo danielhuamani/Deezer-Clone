@@ -8,6 +8,5 @@ migrations:
 	docker-compose -f ./docker/docker-compose.yml exec silabuz python ./src/manage.py makemigrations
 test:
 	# FUNCTION="unit/apps/test_product.py"
-	# FUNCTION="./src/"
 	# PARAMS="-rm"
 	docker-compose -f ./docker/docker-compose.yml run --rm silabuz pytest ./src/tests/${FUNCTION} ${PARAMS}
